@@ -1,0 +1,1 @@
+export const logo_empresa = require('./images/logo_empresa.svg');

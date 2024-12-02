@@ -1,0 +1,37 @@
+  <div className="container max-w-7xl">
+        <Grid
+          server={{
+            url: "http://localhost:3000/usuarios",
+            handle: async (res) => {
+              setLoading(false);
+              if (res.status === 404) return { data: [] };
+              if (res.ok) return await res.json();
+
+              throw new Error("Error al obtener los datos");
+            },
+            then: (data) =>
+              data.map((usuario) => [
+                usuario.nombre,
+                usuario.usuario,
+                usuario.email,
+                usuario.rol,
+                _(
+                  <span
+                    className={
+                      usuario.estado ? "text-green-500" : "text-red-500"
+                    }
+                  >
+                    {usuario.estado ? "Activo" : "Inactivo"}
+                  </span>
+                ),
+                _(),
+              ]),
+          }}
+          columns={table_columns_usuarios}
+          search={true}
+          sort={true}
+          pagination={{
+            limit: 6,
+          }}
+        />
+              </div>

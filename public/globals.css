@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+color: #0a0a0a;
+  background: var(--background);
+  font-family: var(--font-montserrat);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+#active {
+  color: #613bdc;
+}
+
+/* animacion del modal | START */
+#modal_animation {
+  animation-duration: 1s;
+  animation-name: slidein;
+  animation-timing-function: ease-in-out;
+  left: 0;
+  right: 0;
+}
+@keyframes slidein {
+  from {
+    top: -60%;
+  }
+
+  to {
+    top: 0;
+  }
+}
+/* animacion del modal | END */
+
+/* animation bar loader component | start */
+.loader {
+  width: 100%;
+  height: 4.8px;
+  display: inline-block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  width: 0;
+  height: 4.8px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: animFw 10s linear infinite;
+}
+@keyframes animFw {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+/* animation bar loader component | end */
