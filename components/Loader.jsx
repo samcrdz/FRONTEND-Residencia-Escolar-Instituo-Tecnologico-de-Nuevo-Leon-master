@@ -1,3 +1,5 @@
+// componente para simular tiempo de carga
+
 export default function Loader() {
   return (
     <div className="flex gap-5 justify-center items-center">

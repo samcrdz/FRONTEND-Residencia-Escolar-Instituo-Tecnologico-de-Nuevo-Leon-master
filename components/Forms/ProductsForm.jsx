@@ -1,3 +1,9 @@
+/**
+  formulario para dar de alta a los productos el cual por medio de props le mandamos un manejador 
+  que sirve para saber si se va a insertar un nuevo producto o si se va a editar.
+
+*/
+
 export default function ProductsForm({
   handleSubmit,
   setModal,

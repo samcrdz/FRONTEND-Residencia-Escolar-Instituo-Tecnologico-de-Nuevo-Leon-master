@@ -1,3 +1,11 @@
+/**
+  formulario para dar de alta a los clientes el cual por medio de props le mandamos un manejador 
+  que sirve para saber si se va a insertar un nuevo cliente o si se va a editar.
+
+  clientFormFields es un array estatico que son los campos del formulario de cliente, esto se optimiza para que 
+  no tengamos tanto codigo repetitivo
+*/
+
 import { clientFormFields } from "@/utils/staticData";
 
 export default function ClientsForm({
@@ -15,7 +23,7 @@ export default function ClientsForm({
           {/* inputs | NOMBRE, DIRECCION & TELEFONO */}
           <div className="grid grid-cols-1 gap-4">
             {clientFormFields.map((field, index) => (
-              <div>
+              <div key={index}>
                 <label
                   className="block text-sm font-medium text-gray-600"
                   htmlFor={field.db_field}

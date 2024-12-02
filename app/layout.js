@@ -16,6 +16,8 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="es">
+
+  {/* si el usuario se encuentra en la ruta raiz no se aplica la propiedad flex ni se muestra en componente aside menu */}
       <body
         className={`${geistMontserrat.variable} antialiased ${
           pathname !== "/" ? "flex" : ""

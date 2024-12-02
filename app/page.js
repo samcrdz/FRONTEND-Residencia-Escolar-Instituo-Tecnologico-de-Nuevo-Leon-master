@@ -8,47 +8,50 @@ import { loginFormFields } from "@/utils/staticData";
 import BarLoader from "@/components/BarLoader";
 
 export default function Login() {
-  const router = useRouter();
-  const [usuario, setUsuario] = useState("");
-  const [contraseña, setContraseña] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const router = useRouter();  // Obtiene el enrutador de Next.js para redirigir al usuario después del login
+  const [usuario, setUsuario] = useState("");  // Estado para almacenar el valor del campo "usuario"
+  const [contraseña, setContraseña] = useState("");  // Estado para almacenar el valor del campo "contraseña"
+  const [error, setError] = useState("");  // Estado para almacenar los mensajes de error
+  const [loading, setLoading] = useState(false);  // Estado para manejar el estado de carga (spinner)
 
-
+  // Función para establecer una cookie de sesión con un valor específico y un tiempo de expiración de 1 hora
   const setSessionCookie = (value) => {
     const expires = new Date();
-    expires.setTime(expires.getTime() + 1 * 60 * 60 * 1000);
+    expires.setTime(expires.getTime() + 1 * 60 * 60 * 1000);  // La cookie expirará en 1 hora
     document.cookie = `cookie-sesion=${value}; expires=${expires.toUTCString()}; path=/;`;
   };
 
+  // Función que maneja el envío del formulario de inicio de sesión
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+    e.preventDefault();  // Previene el comportamiento predeterminado del formulario (evitar recarga de página)
+    setLoading(true);  // Activa el estado de carga (para mostrar el spinner)
+    setError("");  // Resetea el estado de error
 
     try {
+      // Realiza la solicitud POST al backend para verificar las credenciales del usuario
       const res = await fetch("http://localhost:3000/login", {
-        method: "POST",
+        method: "POST",  // Método POST para enviar las credenciales
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json",  // Establece el tipo de contenido como JSON
         },
-        credentials: "include",
-        body: JSON.stringify({ usuario, contraseña }),
+        credentials: "include",  // Incluye las cookies para manejar la sesión
+        body: JSON.stringify({ usuario, contraseña }),  // Envía las credenciales como JSON
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
+      if (!res.ok) {  // Si la respuesta no es exitosa (código no 2xx)
+        const errorText = await res.text();  // Obtiene el texto del error de la respuesta
         console.error("Error en la respuesta del servidor:", errorText);
-        setError("Error al iniciar sesión: " + errorText);
-        setLoading(false);
-        return;
+        setError("Error al iniciar sesión: " + errorText);  // Establece el mensaje de error
+        setLoading(false);  // Desactiva el estado de carga
+        return;  // Sale de la función en caso de error
       }
 
-      const data = await res.json();
-      console.log("Mensaje del backend:", data.message);
-      console.log("Cookies actuales:", document.cookie);
+      const data = await res.json();  // Convierte la respuesta en formato JSON
+      console.log("Mensaje del backend:", data.message);  // Muestra el mensaje recibido del backend
+      console.log("Cookies actuales:", document.cookie);  // Muestra las cookies actuales en el navegador
 
-      console.log(data.user.nombre);
+      console.log(data.user.nombre);  // Muestra el nombre del usuario desde los datos recibidos
+      // Guarda la información del usuario en el almacenamiento local del navegador (localStorage)
       localStorage.setItem(`usuario`, JSON.stringify({
         nombre: data.user.nombre,
         usuario: data.user.usuario,
@@ -56,19 +59,17 @@ export default function Login() {
         rol: data.user.rol,
       }));
 
-
-      // Establecer la cookie de sesión
+      // Establece la cookie de sesión con el token recibido o un valor predeterminado
       setSessionCookie(data.sessionToken || "defaultToken");
 
-      setError("");
-      router.push("/dashboard");
-
+      setError("");  // Resetea cualquier mensaje de error
+      router.push("/dashboard");  // Redirige al usuario a la página del dashboard
 
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-      setError("Error al iniciar sesión: " + error.message);
+      console.error("Error al iniciar sesión:", error);  // Muestra el error si ocurre durante la solicitud
+      setError("Error al iniciar sesión: " + error.message);  // Establece el mensaje de error
     } finally {
-      setLoading(false);
+      setLoading(false);  // Desactiva el estado de carga al finalizar la solicitud (ya sea exitosa o con error)
     }
   };
 
@@ -94,9 +95,9 @@ export default function Login() {
               const handleChange = (e) => {
                 const { value } = e.target;
                 if (id === "usuario") {
-                  setUsuario(value);
+                  setUsuario(value);  // Actualiza el estado del campo "usuario"
                 } else if (id === "contraseña") {
-                  setContraseña(value);
+                  setContraseña(value);  // Actualiza el estado del campo "contraseña"
                 }
               };
 

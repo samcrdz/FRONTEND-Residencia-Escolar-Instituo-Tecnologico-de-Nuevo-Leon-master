@@ -1,3 +1,10 @@
+
+/*
+  estos solo son datos estaticos que se requieren en ciertas partes del codigo, se crean en forma de array
+  para poder recorrerlos en el componente y asi optimizar codigo
+*/
+
+
 import {
   faBriefcase,
   faClipboardList,
@@ -117,6 +124,7 @@ export const table_columns_clientes = [
   "Telefono",
   "Acciones",
 ];
+
 export const table_columns_productos = [
   "Nombre",
   "Descripción",
@@ -124,6 +132,7 @@ export const table_columns_productos = [
   "Stock",
   "Acciones",
 ];
+
 export const table_columns_usuarios = [
   "Nombre",
   "Usuario",

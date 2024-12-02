@@ -1,3 +1,11 @@
+/**
+  formulario para dar de alta a los usuario el cual por medio de props le mandamos un manejador 
+  que sirve para saber si se va a insertar un nuevo usuario o si se va a editar.
+
+  usersFormFields es un array estatico que son los campos del formulario de usuario, esto se optimiza para que 
+  no tengamos tanto codigo repetitivo
+*/
+
 import { usersFormFields } from "@/utils/staticData";
 
 export default function UserForm({ handleCreateOrUpdate, setModal }) {  // Recibe `setModal` como prop

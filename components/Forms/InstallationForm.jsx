@@ -1,3 +1,10 @@
+/**
+  formulario para dar de alta una instalacion, por medio de propos mandamos clients y products para saber a que cliente 
+  le vamos a instalar dicho producto
+
+  handleCreateOrUpdate nos permite saber si es nueva instalacion o si vamos a editarla
+*/
+
 export default function InstallationForm({
   handleCreateOrUpdate,
   setModal,

@@ -1,3 +1,7 @@
+/**
+ *   handleLogin nos permite manejar el evento de inicio de sesion, esta prop nos ayuda a validar si el usuario y la contrasena son correctas 
+ */
+
 import { loginFormFields } from "@/utils/staticData";
 import { useState } from "react";
 

@@ -1,3 +1,7 @@
+/**
+ * manejadores de eventos para las acciones que vayamos a hacer (aplica para todas las tablas)
+ */
+
 import { faFile, faFileEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

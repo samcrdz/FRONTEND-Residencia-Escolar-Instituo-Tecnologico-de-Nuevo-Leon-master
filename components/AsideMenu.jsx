@@ -15,6 +15,8 @@ export default function AsideMenu() {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
 
+  // recuperamos el nombre y el correo para ponerlo en la info del perfil de usuario
+
   useEffect(() => {
     const usuario = JSON.parse(localStorage.getItem(`usuario`));
 
@@ -26,7 +28,7 @@ export default function AsideMenu() {
     console.log(usuario);
   }, []);
 
-  // Función para borrar todas las cookies
+  // Función para borrar todas las cookies cuando el usuario le de a la opcion de Logout
   const clearCookies = () => {
     const cookies = document.cookie.split(";");
 
@@ -44,7 +46,7 @@ export default function AsideMenu() {
     router.push("/");
   };
 
-  // Obtener la primera letra del nombre y del apellido
+  // Obtener la primera letra del nombre y del apellido para formar la imagen de perfil
   const getInitials = (name) => {
     const nameParts = name.split(" ");
     const initials = nameParts
